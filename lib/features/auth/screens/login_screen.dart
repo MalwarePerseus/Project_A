@@ -1,9 +1,9 @@
 // lib/features/auth/screens/login_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:super_alarmy/features/auth/providers/auth_provider.dart';
-import 'package:super_alarmy/features/auth/screens/signup_screen.dart';
-import 'package:super_alarmy/features/home/screens/home_screen.dart';
+import 'package:project_a/features/auth/providers/auth_provider.dart';
+import 'package:project_a/features/auth/screens/signup_screen.dart';
+import 'package:project_a/features/home/screens/home_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   @override

@@ -1,7 +1,7 @@
 // lib/features/alarm/providers/alarm_provider.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:super_alarmy/data/models/alarm_model.dart';
-import 'package:super_alarmy/core/services/alarm_service.dart';
+import 'package:project_a/data/models/alarm_model.dart';
+import 'package:project_a/core/services/alarm_service.dart';
 
 class AlarmsNotifier extends StateNotifier<AsyncValue<List<AlarmModel>>> {
   AlarmsNotifier() : super(const AsyncValue.loading()) {

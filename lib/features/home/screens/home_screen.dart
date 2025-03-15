@@ -1,12 +1,12 @@
 // lib/features/home/screens/home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:super_alarmy/features/alarm/providers/alarm_provider.dart';
-import 'package:super_alarmy/features/alarm/screens/create_alarm_screen.dart';
-import 'package:super_alarmy/features/sleep_tracking/screens/sleep_dashboard_screen.dart';
-import 'package:super_alarmy/features/sounds/screens/sound_library_screen.dart';
-import 'package:super_alarmy/features/settings/screens/settings_screen.dart';
-import 'package:super_alarmy/data/models/alarm_model.dart';
+import 'package:project_a/features/alarm/providers/alarm_provider.dart';
+import 'package:project_a/features/alarm/screens/create_alarm_screen.dart';
+import 'package:project_a/features/sleep_tracking/screens/sleep_dashboard_screen.dart';
+import 'package:project_a/features/sounds/screens/sound_library_screen.dart';
+import 'package:project_a/features/settings/screens/settings_screen.dart';
+import 'package:project_a/data/models/alarm_model.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {

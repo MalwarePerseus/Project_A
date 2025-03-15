@@ -1,10 +1,10 @@
 // lib/features/alarm/screens/create_alarm_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:super_alarmy/data/models/alarm_model.dart';
-import 'package:super_alarmy/features/alarm/providers/alarm_provider.dart';
-import 'package:super_alarmy/features/alarm/screens/mission_selection_screen.dart';
-import 'package:super_alarmy/features/alarm/screens/sound_selection_screen.dart';
+import 'package:project_a/data/models/alarm_model.dart';
+import 'package:project_a/features/alarm/providers/alarm_provider.dart';
+import 'package:project_a/features/alarm/screens/mission_selection_screen.dart';
+import 'package:project_a/features/alarm/screens/sound_selection_screen.dart';
 
 class CreateAlarmScreen extends ConsumerStatefulWidget {
   final AlarmModel? alarm;

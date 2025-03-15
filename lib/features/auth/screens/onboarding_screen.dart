@@ -1,6 +1,6 @@
 // lib/features/auth/screens/onboarding_screen.dart
 import 'package:flutter/material.dart';
-import 'package:super_alarmy/features/auth/screens/login_screen.dart';
+import 'package:project_a/features/auth/screens/login_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
