@@ -45,5 +45,23 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	 <!-- Camera permissions -->
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs camera access to complete photo missions for alarm dismissal</string>
+    
+    <!-- Microphone permissions for snoring detection -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app needs microphone access to detect snoring during sleep tracking</string>
+    
+    <!-- Motion sensor permissions -->
+    <key>NSMotionUsageDescription</key>
+    <string>This app needs motion sensor access to detect steps and shakes for alarm missions</string>
+    
+    <!-- Background processing -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>
+        <string>processing</string>
+    </array>
 </dict>
 </plist>
