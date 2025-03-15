@@ -1,6 +1,6 @@
 // lib/features/sleep_tracking/providers/sleep_provider.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:super_alarmy/data/models/sleep_data_model.dart';
+import 'package:project_a/data/models/sleep_data_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
