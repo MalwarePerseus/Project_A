@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "803405546811",
+    "project_id": "project-a101",
+    "storage_bucket": "project-a101.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803405546811:android:e3609e08526e8e84f6a31e",
+        "android_client_info": {
+          "package_name": "com.kashpers.project_a"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgRdjBty8f1x9CAKpDmhaDSZaFr632uyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
