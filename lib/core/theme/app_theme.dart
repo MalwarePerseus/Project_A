@@ -25,11 +25,9 @@ class AppTheme {
       colorScheme: ColorScheme.light(
         primary: primaryColor,
         secondary: secondaryColor,
-        background: lightBackground,
         surface: lightSurface,
         onPrimary: Colors.white,
         onSecondary: Colors.white,
-        onBackground: lightText,
         onSurface: lightText,
       ),
       appBarTheme: AppBarTheme(
@@ -116,11 +114,9 @@ class AppTheme {
       colorScheme: ColorScheme.dark(
         primary: primaryColor,
         secondary: secondaryColor,
-        background: darkBackground,
         surface: darkSurface,
         onPrimary: Colors.white,
         onSecondary: Colors.white,
-        onBackground: darkText,
         onSurface: darkText,
       ),
       appBarTheme: AppBarTheme(

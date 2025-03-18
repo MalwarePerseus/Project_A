@@ -1,7 +1,9 @@
 // lib/features/sleep_tracking/screens/sleep_recording_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_a/features/sleep_tracking/providers/sleep_provider.dart';
+import 'package:project_a/data/models/sleep_data_model.dart'; // Add this import for SleepData and SnoringEpisode
 import 'dart:async';
 import 'package:intl/intl.dart';
 
@@ -295,7 +297,7 @@ class _SleepRecordingScreenState extends ConsumerState<SleepRecordingScreen> {
                           Container(
                             padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.red.withOpacity(0.3),
+                              color: Colors.red.withAlpha(77), // 0.3 * 255 ≈ 77
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
@@ -310,7 +312,7 @@ class _SleepRecordingScreenState extends ConsumerState<SleepRecordingScreen> {
                         Icon(
                           Icons.nightlight,
                           size: 80,
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withAlpha(204), // 0.8 * 255 ≈ 204
                         ),
                         SizedBox(height: 24),
                         Text(
@@ -326,7 +328,9 @@ class _SleepRecordingScreenState extends ConsumerState<SleepRecordingScreen> {
                           'Place your phone near your bed and tap Start',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.white.withOpacity(0.8),
+                            color: Colors.white.withAlpha(
+                              204,
+                            ), // 0.8 * 255 ≈ 204
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -370,7 +374,9 @@ class _SleepRecordingScreenState extends ConsumerState<SleepRecordingScreen> {
       children: [
         Text(
           'Noise Level',
-          style: TextStyle(color: Colors.white.withOpacity(0.8)),
+          style: TextStyle(
+            color: Colors.white.withAlpha(204), // 0.8 * 255 ≈ 204
+          ),
         ),
         SizedBox(height: 8),
         Container(
@@ -378,7 +384,7 @@ class _SleepRecordingScreenState extends ConsumerState<SleepRecordingScreen> {
           height: 24,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.white.withOpacity(0.2),
+            color: Colors.white.withAlpha(51), // 0.2 * 255 ≈ 51
           ),
           child: Stack(
             children: [

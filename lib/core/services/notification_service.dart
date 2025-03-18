@@ -1,10 +1,12 @@
 // lib/core/services/notification_service.dart
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz_data;
+import 'dart:typed_data'; // Add this import for Int64List
 
 class NotificationService {
-  static Future<void> initialize(
+  static Future initialize(
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
   ) async {
     // Initialize timezone
@@ -15,13 +17,13 @@ class NotificationService {
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
     // iOS initialization
-    final DarwinInitializationSettings initializationSettingsIOS =
-        DarwinInitializationSettings(
-          requestAlertPermission: true,
-          requestBadgePermission: true,
-          requestSoundPermission: true,
-          onDidReceiveLocalNotification: (id, title, body, payload) async {},
-        );
+    final DarwinInitializationSettings
+    initializationSettingsIOS = DarwinInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+      // Remove the onDidReceiveLocalNotification parameter as it's no longer supported
+    );
 
     // Initialize settings
     final InitializationSettings initializationSettings =
@@ -39,7 +41,7 @@ class NotificationService {
     );
   }
 
-  static Future<void> scheduleAlarmNotification({
+  static Future scheduleAlarmNotification({
     required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
     required int id,
     required String title,
@@ -89,14 +91,14 @@ class NotificationService {
     );
   }
 
-  static Future<void> cancelNotification({
+  static Future cancelNotification({
     required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
     required int id,
   }) async {
     await flutterLocalNotificationsPlugin.cancel(id);
   }
 
-  static Future<void> cancelAllNotifications({
+  static Future cancelAllNotifications({
     required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
   }) async {
     await flutterLocalNotificationsPlugin.cancelAll();

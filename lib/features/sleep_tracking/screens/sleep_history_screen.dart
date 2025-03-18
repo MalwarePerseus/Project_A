@@ -1,10 +1,11 @@
 // lib/features/sleep_tracking/screens/sleep_history_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_a/data/models/sleep_data_model.dart';
 import 'package:project_a/features/sleep_tracking/providers/sleep_provider.dart';
 import 'package:intl/intl.dart';
-import 'package:fl_chart/fl_chart.dart';
+// Removed unused import: import 'package:fl_chart/fl_chart.dart';
 
 class SleepHistoryScreen extends ConsumerWidget {
   @override
@@ -114,13 +115,13 @@ class SleepHistoryScreen extends ConsumerWidget {
 
     if (hasData) {
       if (score >= 90) {
-        cellColor = Colors.green.withOpacity(0.7);
+        cellColor = Colors.green.withAlpha(179); // 0.7 * 255 ≈ 179
       } else if (score >= 80) {
-        cellColor = Colors.lightGreen.withOpacity(0.7);
+        cellColor = Colors.lightGreen.withAlpha(179); // 0.7 * 255 ≈ 179
       } else if (score >= 60) {
-        cellColor = Colors.orange.withOpacity(0.7);
+        cellColor = Colors.orange.withAlpha(179); // 0.7 * 255 ≈ 179
       } else {
-        cellColor = Colors.red.withOpacity(0.7);
+        cellColor = Colors.red.withAlpha(179); // 0.7 * 255 ≈ 179
       }
     }
 
@@ -151,7 +152,7 @@ class SleepHistoryScreen extends ConsumerWidget {
           width: 16,
           height: 16,
           decoration: BoxDecoration(
-            color: color.withOpacity(0.7),
+            color: color.withAlpha(179), // 0.7 * 255 ≈ 179
             borderRadius: BorderRadius.circular(4),
           ),
         ),
@@ -184,7 +185,7 @@ class SleepHistoryScreen extends ConsumerWidget {
                   decoration: BoxDecoration(
                     color: _getSleepScoreColor(
                       sleepData.sleepScore,
-                    ).withOpacity(0.2),
+                    ).withAlpha(51), // 0.2 * 255 ≈ 51
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Text(

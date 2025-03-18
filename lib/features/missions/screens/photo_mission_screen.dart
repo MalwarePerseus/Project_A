@@ -5,7 +5,7 @@ import 'dart:async';
 import 'dart:io';
 
 class PhotoMissionScreen extends StatefulWidget {
-  final Map<String, dynamic> missionSettings;
+  final Map missionSettings;
   final VoidCallback onMissionComplete;
 
   const PhotoMissionScreen({
@@ -23,8 +23,7 @@ class _PhotoMissionScreenState extends State<PhotoMissionScreen> {
   bool _isCameraInitialized = false;
   bool _isAnalyzing = false;
   String? _photoPath;
-  String? _referencePhotoPath;
-  bool _hasReference;
+  late bool _hasReference;
   String _targetDescription = '';
 
   @override
@@ -38,6 +37,11 @@ class _PhotoMissionScreenState extends State<PhotoMissionScreen> {
 
   Future<void> _initializeCamera() async {
     final cameras = await availableCameras();
+    if (cameras.isEmpty) {
+      // Handle no camera available
+      return;
+    }
+
     final firstCamera = cameras.first;
 
     _cameraController = CameraController(
@@ -46,12 +50,16 @@ class _PhotoMissionScreenState extends State<PhotoMissionScreen> {
       enableAudio: false,
     );
 
-    await _cameraController!.initialize();
-
-    if (mounted) {
-      setState(() {
-        _isCameraInitialized = true;
-      });
+    try {
+      await _cameraController!.initialize();
+      if (mounted) {
+        setState(() {
+          _isCameraInitialized = true;
+        });
+      }
+    } catch (e) {
+      // Handle camera initialization error
+      print('Error initializing camera: $e');
     }
   }
 
@@ -70,9 +78,12 @@ class _PhotoMissionScreenState extends State<PhotoMissionScreen> {
 
     try {
       final XFile photo = await _cameraController!.takePicture();
-      setState(() {
-        _photoPath = photo.path;
-      });
+
+      if (mounted) {
+        setState(() {
+          _photoPath = photo.path;
+        });
+      }
 
       // Simulate photo analysis
       await Future.delayed(Duration(seconds: 2));
@@ -81,32 +92,36 @@ class _PhotoMissionScreenState extends State<PhotoMissionScreen> {
       // or use ML to identify the target object
       final bool isMatch = true; // Simulated match
 
-      if (isMatch) {
-        widget.onMissionComplete();
-      } else {
+      if (mounted) {
+        if (isMatch) {
+          widget.onMissionComplete();
+        } else {
+          setState(() {
+            _isAnalyzing = false;
+            _photoPath = null;
+          });
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Photo does not match. Please try again.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
         setState(() {
           _isAnalyzing = false;
-          _photoPath = null;
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Photo does not match. Please try again.'),
+            content: Text('Error taking photo: $e'),
             backgroundColor: Colors.red,
           ),
         );
       }
-    } catch (e) {
-      setState(() {
-        _isAnalyzing = false;
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error taking photo: $e'),
-          backgroundColor: Colors.red,
-        ),
-      );
     }
   }
 

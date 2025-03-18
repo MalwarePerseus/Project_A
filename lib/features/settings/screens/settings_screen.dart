@@ -1,9 +1,11 @@
 // lib/features/settings/screens/settings_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_a/features/auth/providers/auth_provider.dart';
 import 'package:project_a/features/subscription/screens/subscription_screen.dart';
-import 'package:project_a/features/settings/screens/about_screen.dart';
+// Remove or comment out the missing import
+// import 'package:project_a/features/settings/screens/about_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
@@ -219,9 +221,29 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             subtitle: Text('Version $_appVersion'),
             trailing: Icon(Icons.chevron_right),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AboutScreen()),
+              // Fix: Replace AboutScreen() with a simple dialog since the AboutScreen class doesn't exist
+              showDialog(
+                context: context,
+                builder:
+                    (context) => AlertDialog(
+                      title: Text('About'),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Super Alarmy'),
+                          Text('Version: $_appVersion'),
+                          SizedBox(height: 16),
+                          Text('© 2025 Super Alarmy Team'),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text('Close'),
+                        ),
+                      ],
+                    ),
               );
             },
           ),

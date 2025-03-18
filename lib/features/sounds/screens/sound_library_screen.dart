@@ -1,4 +1,5 @@
 // lib/features/sounds/screens/sound_library_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_a/features/sounds/providers/sound_provider.dart';
@@ -28,7 +29,7 @@ class _SoundLibraryScreenState extends ConsumerState<SoundLibraryScreen>
 
   @override
   Widget build(BuildContext context) {
-    final soundsAsync = ref.watch(soundsProvider);
+    // Removed unused soundsAsync variable
 
     return Scaffold(
       appBar: AppBar(
@@ -124,7 +125,10 @@ class _SoundLibraryScreenState extends ConsumerState<SoundLibraryScreen>
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withAlpha(179), // Fixed: 0.7 * 255 ≈ 179
+                    ],
                   ),
                 ),
               ),
@@ -149,14 +153,18 @@ class _SoundLibraryScreenState extends ConsumerState<SoundLibraryScreen>
                     children: [
                       Icon(
                         _getCategoryIcon(sound.category),
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withAlpha(
+                          204,
+                        ), // Fixed: 0.8 * 255 ≈ 204
                         size: 16,
                       ),
                       SizedBox(width: 4),
                       Text(
                         _getCategoryName(sound.category),
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withAlpha(
+                            204,
+                          ), // Fixed: 0.8 * 255 ≈ 204
                           fontSize: 12,
                         ),
                       ),

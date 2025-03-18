@@ -27,7 +27,7 @@ class _MemoryMissionScreenState extends State<MemoryMissionScreen> {
   int _matchedPairs = 0;
   late Timer _timer;
   int _remainingSeconds = 0;
-  final _random = Random();
+  //final _random = Random();
 
   @override
   void initState() {

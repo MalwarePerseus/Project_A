@@ -1,10 +1,12 @@
 // lib/features/missions/screens/shake_mission_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'dart:async';
+import 'dart:math'; // Added import for sin function
 
 class ShakeMissionScreen extends StatefulWidget {
-  final Map<String, dynamic> missionSettings;
+  final Map missionSettings;
   final VoidCallback onMissionComplete;
 
   const ShakeMissionScreen({
@@ -23,7 +25,7 @@ class _ShakeMissionScreenState extends State<ShakeMissionScreen>
   late double _sensitivity;
   int _shakeCount = 0;
   bool _isShaking = false;
-  StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
+  StreamSubscription? _accelerometerSubscription;
   late AnimationController _animationController;
 
   @override
@@ -65,7 +67,8 @@ class _ShakeMissionScreenState extends State<ShakeMissionScreen>
   }
 
   void _startListening() {
-    _accelerometerSubscription = accelerometerEvents.listen((
+    // Fixed: Use accelerometerEventStream() instead of accelerometerEvents
+    _accelerometerSubscription = accelerometerEventStream().listen((
       AccelerometerEvent event,
     ) {
       // Calculate magnitude of acceleration
@@ -139,9 +142,10 @@ class _ShakeMissionScreenState extends State<ShakeMissionScreen>
                   height: 150,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
+                    // Fixed: Use withAlpha instead of withOpacity
                     color: Theme.of(
                       context,
-                    ).colorScheme.primary.withOpacity(0.2),
+                    ).colorScheme.primary.withAlpha(51), // 0.2 * 255 ≈ 51
                   ),
                   child: Icon(
                     Icons.vibration,
@@ -163,7 +167,7 @@ class _ShakeMissionScreenState extends State<ShakeMissionScreen>
                   value: progress,
                   minHeight: 20,
                   backgroundColor: Colors.grey.shade200,
-                  valueColor: AlwaysStoppedAnimation<Color>(
+                  valueColor: AlwaysStoppedAnimation(
                     Theme.of(context).colorScheme.primary,
                   ),
                 ),

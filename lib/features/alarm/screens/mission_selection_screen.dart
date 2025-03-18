@@ -1,9 +1,10 @@
 // lib/features/alarm/screens/mission_selection_screen.dart
+
 import 'package:flutter/material.dart';
 
 class MissionSelectionScreen extends StatefulWidget {
   final String selectedMission;
-  final Map<String, dynamic> missionSettings;
+  final Map missionSettings;
 
   const MissionSelectionScreen({
     Key? key,
@@ -17,7 +18,7 @@ class MissionSelectionScreen extends StatefulWidget {
 
 class _MissionSelectionScreenState extends State<MissionSelectionScreen> {
   late String _selectedMission;
-  late Map<String, dynamic> _missionSettings;
+  late Map _missionSettings;
 
   @override
   void initState() {
@@ -50,7 +51,6 @@ class _MissionSelectionScreenState extends State<MissionSelectionScreen> {
               style: TextStyle(color: Colors.grey.shade600),
             ),
             SizedBox(height: 24),
-
             // Mission options
             _buildMissionOption(
               'none',
@@ -101,9 +101,7 @@ class _MissionSelectionScreenState extends State<MissionSelectionScreen> {
               Icons.directions_walk,
               Colors.teal,
             ),
-
             SizedBox(height: 24),
-
             // Mission settings
             if (_selectedMission != 'none') ...[
               Card(
@@ -140,7 +138,6 @@ class _MissionSelectionScreenState extends State<MissionSelectionScreen> {
     Color color,
   ) {
     final isSelected = _selectedMission == missionType;
-
     return Card(
       margin: EdgeInsets.only(bottom: 12),
       elevation: isSelected ? 4 : 1,
@@ -155,7 +152,6 @@ class _MissionSelectionScreenState extends State<MissionSelectionScreen> {
         onTap: () {
           setState(() {
             _selectedMission = missionType;
-
             // Initialize default settings for the mission type
             if (missionType == 'math' &&
                 !_missionSettings.containsKey('difficulty')) {
@@ -188,7 +184,8 @@ class _MissionSelectionScreenState extends State<MissionSelectionScreen> {
               Container(
                 padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  // Fix for deprecated withOpacity
+                  color: color.withAlpha((0.1 * 255).round()),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(icon, color: color, size: 28),
@@ -344,7 +341,10 @@ class _MissionSelectionScreenState extends State<MissionSelectionScreen> {
             labelText: 'Description',
             hintText: 'e.g., bathroom sink, coffee machine',
           ),
-          initialValue: _missionSettings['description'] ?? '',
+          // Fix: Replace initialValue with controller
+          controller: TextEditingController(
+            text: _missionSettings['description'] ?? '',
+          ),
           onChanged: (value) {
             _missionSettings['description'] = value;
           },
@@ -433,7 +433,10 @@ class _MissionSelectionScreenState extends State<MissionSelectionScreen> {
             labelText: 'Description',
             hintText: 'e.g., toothpaste, cereal box',
           ),
-          initialValue: _missionSettings['description'] ?? '',
+          // Fix: Replace initialValue with controller
+          controller: TextEditingController(
+            text: _missionSettings['description'] ?? '',
+          ),
           onChanged: (value) {
             _missionSettings['description'] = value;
           },

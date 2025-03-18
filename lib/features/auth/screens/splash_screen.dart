@@ -1,8 +1,10 @@
 // lib/features/auth/screens/splash_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_a/features/auth/providers/auth_provider.dart';
 import 'package:project_a/features/auth/screens/onboarding_screen.dart';
+import 'package:project_a/features/auth/screens/login_screen.dart';
 import 'package:project_a/features/home/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,7 +16,7 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  late Animation<double> _fadeAnimation;
+  late Animation<double> _fadeAnimation; // Fixed: Added type parameter <double>
 
   @override
   void initState() {
@@ -26,6 +28,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     );
 
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      // Fixed: Added type parameter <double>
       CurvedAnimation(
         parent: _animationController,
         curve: Interval(0.0, 0.5, curve: Curves.easeIn),
@@ -90,7 +93,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,

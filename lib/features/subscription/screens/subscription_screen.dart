@@ -1,7 +1,10 @@
 // lib/features/subscription/screens/subscription_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_a/features/subscription/providers/subscription_provider.dart';
+// Add this import for isPremiumUserProvider
+import 'package:project_a/features/settings/screens/settings_screen.dart';
 
 class SubscriptionScreen extends ConsumerStatefulWidget {
   @override
@@ -170,7 +173,10 @@ class _SubscriptionScreenState extends ConsumerState<SubscriptionScreen> {
           Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+              // Fixed: Replace withOpacity with withAlpha
+              color: Theme.of(
+                context,
+              ).colorScheme.primary.withAlpha(26), // 0.1 * 255 ≈ 26
               shape: BoxShape.circle,
             ),
             child: Icon(

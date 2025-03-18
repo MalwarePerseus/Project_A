@@ -1,4 +1,5 @@
 // lib/features/auth/providers/auth_provider.dart
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -6,12 +7,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project_a/data/models/user_model.dart';
 
 // Provider for auth state changes
-final authStateProvider = StreamProvider<User?>((ref) {
+final authStateProvider = StreamProvider((ref) {
   return FirebaseAuth.instance.authStateChanges();
 });
 
 // Provider for current user data
-final userDataProvider = FutureProvider<UserModel?>((ref) async {
+final userDataProvider = FutureProvider((ref) async {
   final user = FirebaseAuth.instance.currentUser;
   if (user == null) return null;
 
@@ -92,7 +93,7 @@ class AuthNotifier extends StateNotifier<AsyncValue<User?>> {
     }
   }
 
-  //Sign in with google
+  // Sign in with google
   Future<bool> signInWithGoogle() async {
     try {
       state = const AsyncValue.loading();
